@@ -14,29 +14,33 @@ $ref_key = $_GET['ref_key'];
 if(checkusername($username)){
   $bad_user = 1;
 }else{
-	$bad_user = 0;
+  $bad_user = 0;
 }
-//check password
 
+//check password
 if($password == ''){
 	$bad_pass = 1;
 }else{
 	$bad_pass = 0;
 }
-
+//Look at refrence key
 $ref_name_good = refkey($ref_key);
 if(gettype($ref_name_good) == string){
+	//Ref key valid! setting permissions to be keys
 	$permission = $ref_name_good;
 }else{
+	//Invalid refkey
 	$message = "Invalid Refrence key";
 	$permission = $default_permission;
 }
 	
 
-
+//Look at username and see if its invalid
 if($bad_pass == 1|| $bad_user == 1){
+	//Return values
 	header("location:createaccount.php?username=$username&email=$email&bad_user=$bad_user&bad_pass=$bad_pass");
 }else{
+//Make new user
 $query = "INSERT INTO `users` (
 `username`,
 `password`,
@@ -54,11 +58,11 @@ VALUES
 '$email',
 '$permission',
 '$mc_name')"; 
-
+//Save to MySQL server
 $results = mysql_query($query);
 
 
-
+//Debug info
 $sucess = 1;
 }
 
