@@ -1,4 +1,5 @@
 <?
+//Set permission level
 $req_permission = 5;
 include"auth.php";
 include"functions.php";
@@ -9,6 +10,7 @@ include"functions.php";
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Edit User</title>
 <?
+//Set all pages for header
 head("../..", "../css");
 ?>
 </head>
@@ -16,14 +18,16 @@ head("../..", "../css");
 <body>
 <?
 
-
+//Get user info
 $id = $_GET['id'];
 $user_query = "SELECT * FROM `users` WHERE `id` = $id LIMIT 0, 30 ";
 $user_info = mysql_query($user_query);
 $returned = mysql_num_rows($user_info);
 
+//User found
 if($returned == 1){
   while( $row = mysql_fetch_array($user_info)){
+  		//Get user info
 		$que_user = $row['username'];
 		$que_firstname = $row['firstname'];
 		$que_lastname = $row['lastname'];
@@ -72,6 +76,7 @@ if($returned == 1){
 		</form>
 	<?
 }else{
+	//User not found
 	echo "User with id of $id is not found";
 }
 
