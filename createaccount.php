@@ -1,6 +1,8 @@
 <?
+//includes
 include"auth.php";
 include"functions.php";
+//Get values
 $username = $_GET['username'];
 $password = $_GET['password'];
 $bad_user = $_GET['bad_user'];
